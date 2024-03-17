@@ -1,0 +1,21 @@
+const express = require('express');
+const authController =require("../Controllers/authController");
+const todoController = require('../Controllers/todoController');
+const router = express.Router();
+const middleware = require('../middlewhere/middlewhere');
+router.post('/register' ,authController.register);
+router.post('/account_pic',authController.storage , authController.upload);
+router.post('/login' , authController.login);
+router.post('/forgot_password', authController.forgotpassword); 
+router.post('/post_todo',todoController.posttodo );
+router.post('/get_todo' ,todoController.gettodo ); 
+router.get('/get_todo_byid/:id' ,todoController.gettodobyid );
+router.post('/profileImage' ,authController.profile , authController.upload  ); 
+router.delete("/delete_todo" , todoController.deleteTodo); 
+router.delete("/delete_all" , todoController.allDeleteTodo);
+router.get("/getprofile/:id",authController.getprofile);
+router.put('/update_user_profile/:userId',authController.updateUserProfile); 
+router.put('/update_todo/:userId',todoController.updatetodo)
+router.get('/active_users_count',authController.loginUserCount);
+router.post('/logout',authController.logout);
+module.exports = router ;
